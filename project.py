@@ -50,11 +50,11 @@ while x:                                        #použit cyklus WHILE
     if x == 0:
         print("Sorry, next time")
         exit()
-print("OK, we can continue")
+
 print(ODD)
 print("We have 3 text to be analysed.")
-                                                #10 pokusů na to zadat správnou volbu
-for i in range(10):                             #použita smyčka FOR
+                                                     #10 pokusů na to zadat správnou volbu
+for i in range(10):                                  #použita smyčka FOR
     choice = int(input("Enter the number between 1 and 3 to select: "))
     if choice == 1 or choice == 2 or choice == 3:
         break
@@ -63,3 +63,34 @@ for i in range(10):                             #použita smyčka FOR
     if i == 9:
         print("Sorry, next time")
         exit()
+print(ODD)
+text = TEXTS[choice - 1]
+
+print(f"There are {len(text.split())} words in the selected text.") #pocet slov v textu
+
+text1 = text.split()                                                #není to vůbec elegantní, ale nic jiného
+text1 = tuple(text1)                                                #mě nenapadlo
+x = 0
+for i in range(0,len(text1)):
+    if text1[i].istitle():
+        x = x + 1
+print(f"There are {x} titlecase words.")
+
+
+x = 0                                                               #opět stejný postup (proměnná text1 už je tuple)
+for i in range(len(text1)):
+    if text1[i].isupper():
+        x = x + 1
+print(f"There are {x} uppercase words.")
+
+for i in range(len(text1)):
+    if text1[i].islower():
+        x = x + 1
+print(f"There are {x} lowercase words.")
+
+x = 0
+for i in range(len(text1)):
+    if text1[i].isnumeric():
+        x = x + 1
+print(f"There are {x} numeric strings.")
+print(ODD)
