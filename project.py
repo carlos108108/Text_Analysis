@@ -1,5 +1,5 @@
 '''
-author = 
+author = Karel Novák aka carlos108108
 '''
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer, 
@@ -40,7 +40,7 @@ MATCH = {                                       #vytvoření slovníku uživatel
 print(ODD)
 print("Welcome to the app. Please log in:")
 x = 3                                           #na zadání správné kombinace jsou 3 pokusy, pak se program ukončí
-while x:
+while x:                                        #použit cyklus WHILE
     username = input("USERNAME: ")
     password = input("PASSWORD: ")
     if MATCH.get(username) == password:
@@ -52,3 +52,14 @@ while x:
         exit()
 print("OK, we can continue")
 print(ODD)
+print("We have 3 text to be analysed.")
+                                                #10 pokusů na to zadat správnou volbu
+for i in range(10):                             #použita smyčka FOR
+    choice = int(input("Enter the number between 1 and 3 to select: "))
+    if choice == 1 or choice == 2 or choice == 3:
+        break
+    else:
+        print("You have to enter number between 1 and 3")
+    if i == 9:
+        print("Sorry, next time")
+        exit()
