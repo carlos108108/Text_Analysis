@@ -95,19 +95,24 @@ for i in range(len(text1)):
 print(f"There are {x} numeric strings.")
 print(ODD)
                                                     #zjišťování četnosti - pouužita efektivnější metoda z lekce 4
-text2 = text.split()                                #které ale úplně nerozumím :)
-amount = {}                                         #vychází někde o jednu jiné hodnoty než v příkladu
-while text2:
-    word = text2.pop()
+text1 = text.split()                                #které ale úplně nerozumím :)
+amount = {}                                         #některé hodnoty vychází o +-1 jinak než ve vzorovém řešení
+while text1:
+    word = text1.pop()
     amount[len(word)] = amount.get(len(word),0) + 1
-l = list()
-for i in range(len(amount)):
+l = list()                                          #převod slovníku na indexovatelný datový typ - nenašel jsem
+for i in range(len(amount)):                        #metodu, jak to udělat jinak, přes .popitem() mi to nějak nešlo
     x = amount.popitem()
-
     l.append(x)
-
 for i in range(len(l)):
-    z = (min(l))
-    print(z[0], "*" * z[1], z[1])
-    l.remove(z)
+    z = (min(l))                                    #zjištění tuple s nejmenší hodnotou-podle první hodnoty v tuple...?
+    print(z[0], "\t", "*" * z[1], z[1])             #pokus o "naformátování" grafu
+    l.remove(z)                                     #odstranění nejmenšího tuple
 print(ODD)
+
+numbers = 0                                         #testování a součet čísel - ne cifer :)
+text1 = text.split()
+for i in range(len(text1)):
+    if text1[i].isnumeric():
+        numbers = numbers + float(text1[i])
+print(f"If we summed all the numbers in this text we would get: {numbers}")
