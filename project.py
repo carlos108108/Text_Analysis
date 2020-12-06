@@ -69,9 +69,9 @@ text = TEXTS[choice - 1]
 print(f"There are {len(text.split())} words in the selected text.") #pocet slov v textu
 
 text1 = text.split()                                                #není to vůbec elegantní, ale nic jiného
-text1 = tuple(text1)                                                #mě nenapadlo
-x = 0
-for i in range(0,len(text1)):
+text1 = tuple(text1)                                                #mě nenapadlo - rozdělení do listu a
+x = 0                                                               #převod na tuple
+for i in range(len(text1)):
     if text1[i].istitle():
         x = x + 1
 print(f"There are {x} titlecase words.")
@@ -93,4 +93,21 @@ for i in range(len(text1)):
     if text1[i].isnumeric():
         x = x + 1
 print(f"There are {x} numeric strings.")
+print(ODD)
+                                                    #zjišťování četnosti - pouužita efektivnější metoda z lekce 4
+text2 = text.split()                                #které ale úplně nerozumím :)
+amount = {}                                         #vychází někde o jednu jiné hodnoty než v příkladu
+while text2:
+    word = text2.pop()
+    amount[len(word)] = amount.get(len(word),0) + 1
+l = list()
+for i in range(len(amount)):
+    x = amount.popitem()
+
+    l.append(x)
+
+for i in range(len(l)):
+    z = (min(l))
+    print(z[0], "*" * z[1], z[1])
+    l.remove(z)
 print(ODD)
