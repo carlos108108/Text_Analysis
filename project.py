@@ -55,11 +55,12 @@ print(ODD)
 print(f"We have {len(TEXTS)} text to be analysed.")
                                                      #10 pokusů na to zadat správnou volbu
 for i in range(10):                                  #použita smyčka FOR
-    choice = int(input(f"Enter the number between 1 and {len(TEXTS)} to select: "))
-    if choice in range(1,len(TEXTS)+1):
+    choice = input(f"Enter the number between 1 and {len(TEXTS)} to select: ")
+    if choice.isnumeric() and int(choice) in range(1,len(TEXTS)+1): #nehlásí chybu když zadáno písmeno, znak
+        choice = int(choice)
         break
     else:
-        print(f"You have to enter number between 1 and {len(TEXTS)}")
+        print(f"You have to enter the number between 1 and {len(TEXTS)}")
     if i == 9:
         print("Sorry, next time")
         exit()
