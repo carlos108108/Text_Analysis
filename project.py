@@ -52,14 +52,14 @@ while x:                                        #použit cyklus WHILE
         exit()
 
 print(ODD)
-print("We have 3 text to be analysed.")
+print(f"We have {len(TEXTS)} text to be analysed.")
                                                      #10 pokusů na to zadat správnou volbu
 for i in range(10):                                  #použita smyčka FOR
-    choice = int(input("Enter the number between 1 and 3 to select: "))
-    if choice == 1 or choice == 2 or choice == 3:
+    choice = int(input(f"Enter the number between 1 and {len(TEXTS)} to select: "))
+    if choice in range(1,len(TEXTS)+1):
         break
     else:
-        print("You have to enter number between 1 and 3")
+        print(f"You have to enter number between 1 and {len(TEXTS)}")
     if i == 9:
         print("Sorry, next time")
         exit()
@@ -96,9 +96,9 @@ print(f"There are {x} numeric strings.")
 print(ODD)
                                                     #zjišťování četnosti - pouužita efektivnější metoda z lekce 4
 text1 = text.split()                                #které ale úplně nerozumím :)
-amount = {}                                         #některé hodnoty vychází o +-1 jinak než ve vzorovém řešení
+amount = {}
 while text1:
-    word = text1.pop()
+    word = text1.pop().strip(",.")                  #k očištění použit příkaz strip
     amount[len(word)] = amount.get(len(word),0) + 1
 l = list()                                          #převod slovníku na indexovatelný datový typ - nenašel jsem
 for i in range(len(amount)):                        #metodu, jak to udělat jinak, přes .popitem() mi to nějak nešlo
