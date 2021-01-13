@@ -31,7 +31,7 @@ in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
 ODD = "-" * 40
-MATCH = {                                       #vytvoření slovníku uživatelů s hesly
+MATCH = {
  "bob" :    "123",
  "ann" :  "pass123",
  "mike" : "password123",
@@ -39,81 +39,80 @@ MATCH = {                                       #vytvoření slovníku uživatel
 }
 print(ODD)
 print("Welcome to the app. Please log in:")
-x = 3                                           #na zadání správné kombinace jsou 3 pokusy, pak se program ukončí
-while x:                                        #použit cyklus WHILE
+x = 3
+while x:
     username = input("USERNAME: ")
     password = input("PASSWORD: ")
     if MATCH.get(username) == password:
         break
-    x = x - 1
+    x -= 1
     print(f"You have only {x} attempt(s)")
-    if x == 0:
+    if not x:
         print("Sorry, next time")
         exit()
 
 print(ODD)
 print(f"We have {len(TEXTS)} text to be analysed.")
-                                                     #10 pokusů na to zadat správnou volbu
-for i in range(10):                                  #použita smyčka FOR
+
+x = 10
+while x:
     choice = input(f"Enter the number between 1 and {len(TEXTS)} to select: ")
     if choice.isnumeric() and int(choice) in range(1,len(TEXTS)+1): #nehlásí chybu když zadáno písmeno, znak
         choice = int(choice)
         break
-    else:
-        print(f"You have to enter the number between 1 and {len(TEXTS)}")
-    if i == 9:
+    print(f"You have to enter the number between 1 and {len(TEXTS)}")
+    x -= 1
+    if not x:
         print("Sorry, next time")
         exit()
 print(ODD)
 text = TEXTS[choice - 1]
+text1 = text.split()
 
-print(f"There are {len(text.split())} words in the selected text.") #pocet slov v textu
+print(f"There are {len(text1)} words in the selected text.")
 
-text1 = text.split()                                                #není to vůbec elegantní, ale nic jiného
-text1 = tuple(text1)                                                #mě nenapadlo - rozdělení do listu a
-x = 0                                                               #převod na tuple
+counter_title = 0
+counter_upper = 0
+counter_lower = 0
+counter_numeric = 0
+numbers = 0
+
 for i in range(len(text1)):
+
     if text1[i].istitle():
-        x = x + 1
-print(f"There are {x} titlecase words.")
+        counter_title += 1
 
-
-x = 0                                                               #opět stejný postup (proměnná text1 už je tuple)
-for i in range(len(text1)):
     if text1[i].isupper():
-        x = x + 1
-print(f"There are {x} uppercase words.")
+        counter_upper += 1
 
-for i in range(len(text1)):
     if text1[i].islower():
-        x = x + 1
-print(f"There are {x} lowercase words.")
+        counter_lower += 1
 
-x = 0
-for i in range(len(text1)):
     if text1[i].isnumeric():
-        x = x + 1
-print(f"There are {x} numeric strings.")
+        counter_numeric += 1
+        numbers += float(text1[i])
+
+print(f"There are {counter_title} titlecase words.")
+print(f"There are {counter_upper} uppercase words.")
+print(f"There are {counter_lower} lowercase words.")
+print(f"There are {counter_numeric} numeric strings.")
 print(ODD)
-                                                    #zjišťování četnosti - pouužita efektivnější metoda z lekce 4
-text1 = text.split()                                #které ale úplně nerozumím :)
+
 amount = {}
 while text1:
-    word = text1.pop().strip(",.")                  #k očištění použit příkaz strip
+    word = text1.pop().strip(",.")
     amount[len(word)] = amount.get(len(word),0) + 1
-l = list()                                          #převod slovníku na indexovatelný datový typ - nenašel jsem
-for i in range(len(amount)):                        #metodu, jak to udělat jinak, přes .popitem() mi to nějak nešlo
+
+l = list()
+for i in range(len(amount)):
     x = amount.popitem()
     l.append(x)
+
 for i in range(len(l)):
-    z = (min(l))                                    #zjištění tuple s nejmenší hodnotou-podle první hodnoty v tuple...?
-    print(z[0], "\t", "*" * z[1], z[1])             #pokus o "naformátování" grafu
+    z = (min(l))                                    #zjištění tuple s nejmenší hodnotou-podle první hodnoty v tuple
+    print(z[0], "\t", "*" * z[1], z[1])             #"naformátování" grafu
     l.remove(z)                                     #odstranění nejmenšího tuple
 print(ODD)
 
-numbers = 0                                         #testování a součet čísel - ne cifer :)
-text1 = text.split()
-for i in range(len(text1)):
-    if text1[i].isnumeric():
-        numbers = numbers + float(text1[i])
 print(f"If we summed all the numbers in this text we would get: {numbers}")
+print()
